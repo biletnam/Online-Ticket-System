@@ -1,0 +1,36 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://venus.eas.asu.edu/WsRepository/xml" targetNamespace="http://venus.eas.asu.edu/WsRepository/xml" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xsd:element name="Spots" type="SpotsType"/>
+
+  <xsd:complexType name="SpotsType">
+    <xsd:sequence>
+      <xsd:element name="Spot" type="SpotDetails" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- Spot -->
+  <xsd:complexType name="SpotDetails">
+    <xsd:sequence>
+      <xsd:element name="Location" type="LocationDetails" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="Introduction" type="xsd:string" minOccurs="1" maxOccurs="1" />
+      <xsd:element name="Price" type="xsd:string" minOccurs="1" maxOccurs="1" />
+    </xsd:sequence>
+    <xsd:attribute name="Name" type="xsd:string" use="required" />
+  </xsd:complexType>
+  
+  <!-- Location-->
+  <xsd:complexType name="LocationDetails">
+    <xsd:sequence>
+      <xsd:element name="State" type="xsd:string" minOccurs="1" maxOccurs="1" />
+      <xsd:element name="City" type="xsd:string" minOccurs="1" maxOccurs="1" />
+      <xsd:element name="ZipCode" type="ZipCodeType" minOccurs="1" maxOccurs="1" />
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <!-- ZipCode -->
+  <xsd:simpleType name="ZipCodeType">
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="\d{5}"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+</xsd:schema>
